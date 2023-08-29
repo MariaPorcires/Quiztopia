@@ -9,7 +9,7 @@ function LoginPage() {
     const [password, setPassword] = useState<string>('')
     const [message, setMessage] = useState<string>('')
 
-    const [token, setToken] = useState<string>('') 
+    //const [token, setToken] = useState<string>('') 
 
     interface ApiResponse {
         success: boolean;
@@ -26,6 +26,7 @@ function LoginPage() {
                 password: password
             })
         }
+
         const response = await fetch(url, settings)
         const data: ApiResponse = await response.json()
         console.log('data from user',data);
@@ -62,11 +63,10 @@ function LoginPage() {
  
         if( data.success ) {
 			navigate('/createquiz')
-			if( data.token ) setToken(data.token)
+			//if( data.token ) setToken(data.token)
 		} else {
 			setMessage('Kunde inte logga in.')
 		}
-
     }
 
     return(
