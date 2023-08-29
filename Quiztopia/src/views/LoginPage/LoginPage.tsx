@@ -1,11 +1,15 @@
 import './LoginPage.css'
 import { useState } from "react"
+import { useNavigate } from 'react-router';
 
 
 function LoginPage() {
-
+    const navigate = useNavigate();
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [message, setMessage] = useState<string>('')
+
+    const [token, setToken] = useState<string>('') 
 
     interface ApiResponse {
         success: boolean;
@@ -17,7 +21,6 @@ function LoginPage() {
 
         const settings = {
             method: 'POST',
-            headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify({
                 username: username,
                 password: password
@@ -26,6 +29,12 @@ function LoginPage() {
         const response = await fetch(url, settings)
         const data: ApiResponse = await response.json()
         console.log('data from user',data);
+
+        if( data.success ) {
+			setMessage('Användaren skapades.')
+		} else {
+			setMessage('Kunde inte skapa användare.')
+		}
     }
 
     interface ApiSignUp {
@@ -35,6 +44,7 @@ function LoginPage() {
       }
     
     async function handleLogIn() {
+
         const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/auth/login'
 
         const settings = {
@@ -48,7 +58,15 @@ function LoginPage() {
         const response = await fetch(url, settings)
         const data: ApiSignUp = await response.json()
         console.log('nästa data: ', data);
-        
+        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVaejJPaHNoM3JzMzN0OTN0MDZUZiIsInVzZXJuYW1lIjoicnIiLCJpYXQiOjE2OTMzMTIzOTcsImV4cCI6MTY5MzMxNTk5N30.cR58YSNaT20cX1aPDIUShYZpPgKeVs871GlpE_pMLIM" )
+ 
+        if( data.success ) {
+			navigate('/createquiz')
+			if( data.token ) setToken(data.token)
+		} else {
+			setMessage('Kunde inte logga in.')
+		}
+
     }
 
     return(
@@ -61,6 +79,8 @@ function LoginPage() {
 
             <button onClick={ handleCreateUser }>Sign up</button>
             <button onClick={ handleLogIn }>Login</button>
+
+            <p> {message} </p>
 
 
         </section>
