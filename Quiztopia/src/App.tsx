@@ -1,4 +1,5 @@
 import './App.css'
+import LoginPage from './views/LoginPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -12,7 +13,7 @@ function App() {
   
 
   return (
-    <div m className='App'>
+    <div className='App'>
       <RouterProvider router={router}/>
     </div>
   )
