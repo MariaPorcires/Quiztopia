@@ -1,0 +1,19 @@
+
+.loginPage_frame {
+    border: 1px solid black;
+    margin: 1em 0;
+    padding: 6.5rem 10rem;
+    border-radius: 0.5em;
+    background: url(./world.jpg);
+    background-position: center;
+}
+
+.loginPage_input {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 0.5em;
+    margin: 0.5em 0;
+}

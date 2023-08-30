@@ -70,20 +70,27 @@ function LoginPage() {
     }
 
     return(
-        <section>
-            <input type="text" placeholder='Användarnamn' value={username}
-            onChange={event =>  setUsername(event.target.value)} />
+        <div className='loginPage'>
+            <header className='loginPage_header'>
+                <h1>Quiztopia</h1>
+            </header>
+            <section className='loginPage_frame'>
+                <section className='loginPage_input'>
+                    <input type="text" placeholder='Användarnamn' value={username}
+                    onChange={event =>  setUsername(event.target.value)} />
+                    
+                    <input type="text" placeholder='Lösenord' value={password}
+                    onChange={event => setPassword(event.target.value)} />
+                </section>
+                
+                <section className='loginPage_buttons'>
+                    <button onClick={ handleCreateUser }>Sign up</button>
+                    <button onClick={ handleLogIn }>Login</button>
+                    <p> {message} </p>
+                </section>
+            </section>
 
-            <input type="text" placeholder='Lösenord' value={password}
-            onChange={event => setPassword(event.target.value)} />
-
-            <button onClick={ handleCreateUser }>Sign up</button>
-            <button onClick={ handleLogIn }>Login</button>
-
-            <p> {message} </p>
-
-
-        </section>
+        </div>
     )
 }
 
