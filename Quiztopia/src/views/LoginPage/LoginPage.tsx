@@ -59,7 +59,7 @@ function LoginPage() {
         const response = await fetch(url, settings)
         const data: ApiSignUp = await response.json()
         console.log('nästa data: ', data);
-        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkVaejJPaHNoM3JzMzN0OTN0MDZUZiIsInVzZXJuYW1lIjoicnIiLCJpYXQiOjE2OTMzMTIzOTcsImV4cCI6MTY5MzMxNTk5N30.cR58YSNaT20cX1aPDIUShYZpPgKeVs871GlpE_pMLIM" )
+        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF3cHh2VEx0WW0wY1YyQlVaLXFWYSIsInVzZXJuYW1lIjoidHQiLCJpYXQiOjE2OTMzODg4MTksImV4cCI6MTY5MzM5MjQxOX0.1J7WZTuNsbQLrwG4oYTR2KULyP6JnrvwTRIS3UCOKSM" )
  
         if( data.success ) {
 			navigate('/createquiz')
