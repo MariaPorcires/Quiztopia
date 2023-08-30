@@ -2,18 +2,33 @@
 .loginPage_frame {
     border: 1px solid black;
     margin: 1em 0;
-    padding: 6.5rem 10rem;
+    padding: 10rem 12rem;
     border-radius: 0.5em;
-    background: url(./world.jpg);
-    background-position: center;
-}
-
-.loginPage_input {
+    background: url(./w4.jpg);
+    opacity: 0.70;
+    background-position: center; 
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
+}
+
+
+
+.loginPage_input {
+    
+}
+
+.l2 {
+
 }
 
 input {
     padding: 0.5em;
     margin: 0.5em 0;
+    border-radius: 0.5em;
+}
+
+button {
+    border-radius: 0.5em;
+    padding: 0.3em 0.6em;
 }
