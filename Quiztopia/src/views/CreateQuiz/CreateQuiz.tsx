@@ -13,16 +13,16 @@ function CreateQuiz() {
     async function handleCreatequiz() {
         const url ='https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
         const token = localStorage.getItem("token")
+        console.log('JWTtoken: ', token);
         
     
         const settings = {
             method: 'POST',
             body: JSON.stringify({
-                token:token
+               name: 'newQuiz'
             }),
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type' : 'application/json' 
             }
         };
         

@@ -59,7 +59,7 @@ function LoginPage() {
         const response = await fetch(url, settings)
         const data: ApiSignUp = await response.json()
         console.log('nästa data: ', data);
-        localStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF3cHh2VEx0WW0wY1YyQlVaLXFWYSIsInVzZXJuYW1lIjoidHQiLCJpYXQiOjE2OTMzODg4MTksImV4cCI6MTY5MzM5MjQxOX0.1J7WZTuNsbQLrwG4oYTR2KULyP6JnrvwTRIS3UCOKSM" )
+        localStorage.setItem("token", data.token || '')//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF3cHh2VEx0WW0wY1YyQlVaLXFWYSIsInVzZXJuYW1lIjoidHQiLCJpYXQiOjE2OTM0NjUzNjQsImV4cCI6MTY5MzQ2ODk2NH0.vhL3B59ixExGVJ18eQkJBHqXj0lqPAdKHzUwOuNuoT8" )
  
         if( data.success ) {
 			navigate('/createquiz')
@@ -72,13 +72,16 @@ function LoginPage() {
     return(
         <div className='loginPage'>
             <header className='loginPage_header'>
-                <h1>Quiztopia</h1>
+                
             </header>
             <section className='loginPage_frame'>
+            
+               
+
                 <section className='loginPage_input'>
                     <input type="text" placeholder='Användarnamn' value={username}
-                    onChange={event =>  setUsername(event.target.value)} /></section>
-                    <section className='l2'>
+                    onChange={event =>  setUsername(event.target.value)} />
+                    
                     <input type="text" placeholder='Lösenord' value={password}
                     onChange={event => setPassword(event.target.value)} />
                     </section>

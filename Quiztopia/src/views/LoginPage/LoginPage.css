@@ -1,20 +1,24 @@
 
 .loginPage_frame {
     border: 1px solid black;
-    margin: 1em 0;
-    padding: 10rem 12rem;
-    border-radius: 0.5em;
+    padding: 12rem 14rem;
+    border-radius: 4em;
     background: url(./w4.jpg);
     opacity: 0.70;
+    background-size: cover;
     background-position: center; 
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
 }
 
-
+h1 {
+    font-size: 45px;
+    margin-bottom: 7em;
+    padding-bottom: 0.5em;
+    
+}
 
 .loginPage_input {
+    display: flex;
+    flex-direction: column;
     
 }
 
@@ -24,11 +28,22 @@
 
 input {
     padding: 0.5em;
-    margin: 0.5em 0;
+    margin: 0.2em 0;
     border-radius: 0.5em;
+    
+    width: 200px;
+    background-color: rgb(250, 248, 247);
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    
+    
+    
 }
 
 button {
     border-radius: 0.5em;
     padding: 0.3em 0.6em;
+    width: 100px;
+    margin: 0.1em;
+    
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
 }
