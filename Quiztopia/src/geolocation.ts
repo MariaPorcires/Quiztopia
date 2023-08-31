@@ -18,3 +18,5 @@ async function getPosition(): Promise<Position> {
         }
     })
 }
+
+export { getPosition }
