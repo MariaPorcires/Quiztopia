@@ -1,5 +1,6 @@
 import './CreateQuiz.css'
 import { useState } from "react"
+import mapboxgl, { Map as MapGl } from 'mapbox-gl';
 
 
 function CreateQuiz() {
