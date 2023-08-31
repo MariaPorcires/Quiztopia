@@ -4,6 +4,7 @@ import { useState } from "react"
 
 function CreateQuiz() {
     const [showInput, setShowInput] = useState<boolean>(false)
+    const [createQuiz, setCreateQuiz] = useState<string>('')
     const [question, setQuestion] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
 
@@ -22,7 +23,7 @@ function CreateQuiz() {
         const settings = {
             method: 'POST',
             body: JSON.stringify({
-               name: 'newQuiz'
+               name: 'createQuiz'
             }),
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -38,23 +39,24 @@ function CreateQuiz() {
 
     return(
         <section>
-        <button onClick={handleCreatequiz}>Create quiz</button>
-        { showInput && (
-            <div>
-                <input placeholder='Fråga'
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
-                />
-                <input placeholder='Svar'
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                />
+            <input type='text' placeholder='Namn på quiz' value={createQuiz} onChange={event => setCreateQuiz(event.target.value)} />   
+                <button onClick={handleCreatequiz}>Skapa quiz</button>
+                { showInput && (
+                    <div>
+                        <input placeholder='Fråga'
+                        value={question}
+                        onChange={(e) => setQuestion(e.target.value)}
+                        />
+                        <input placeholder='Svar'
+                        value={answer}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        />
 
 
-                 <button>Submit Quiz Name</button>
-                
-            </div>
-        ) } 
+                        <button>Submit Quiz Name</button>
+                        
+                    </div>
+                )} 
         </section>
     )
 
