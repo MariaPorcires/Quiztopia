@@ -33,6 +33,8 @@ function LoginPage() {
 
         if( data.success ) {
 			setMessage('Användaren skapades.')
+            setUsername('')
+            setPassword('')
 		} else {
 			setMessage('Kunde inte skapa användare.')
 		}
@@ -85,7 +87,6 @@ function LoginPage() {
                     <input type="text" placeholder='Lösenord' value={password}
                     onChange={event => setPassword(event.target.value)} />
                     </section>
-                
                 
                 <section className='loginPage_buttons'>
                     <button onClick={ handleCreateUser }>Sign up</button>
