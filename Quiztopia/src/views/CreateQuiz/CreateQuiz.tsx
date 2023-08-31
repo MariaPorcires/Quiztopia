@@ -17,8 +17,34 @@ function CreateQuiz() {
     const [answer, setAnswer] = useState<string>('')
     const [position, setPosition] = useState<Position | null>(null)
     
-   
+   const mapContainer = useRef(null)
+   const mapRef = useRef<MapGl | null>(null)
+   const [lat, setLat] = useState<number>(57.7)
+   const [lng, setLng] = useState<number>(11.89)
+   const [zoom, setZoom] = useState<number>(10)
 
+   useEffect(() => {
+    if( mapRef.current || !mapContainer.current ) return
+
+    mapRef.current = new MapGl({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [lng, lat],
+        zoom: zoom
+    });
+    const map: MapGl = mapRef.current
+
+    map.on('move', () => {
+        interface Position {
+            lng: number;
+            lat: number;
+        }
+        const position: Position = map.getCenter()
+        setLat(Number(position.lat.toFixed(4)))
+        setLng(Number(position.lng.toFixed(4)))
+        setZoom(map.getZoom());
+    })
+}, [lat, lng, zoom])
 
     return(
         <section>
@@ -35,14 +61,12 @@ function CreateQuiz() {
                         onChange={(e) => setAnswer(e.target.value)}
                         />
 
-
                         <button >Lägg till fråga</button>
-                        
                     </div>
                 )} 
                   <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
                   <p>Du är här! {position?.latitude} {position?.longitude}</p>
-                
+                  <div ref={mapContainer} className="map-container" />
         </section>
     )
 
