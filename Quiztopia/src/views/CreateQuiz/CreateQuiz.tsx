@@ -48,16 +48,16 @@ function CreateQuiz() {
     }, [lat, lng, zoom])
 
     return(
-        <section>
-            <input type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
+        <section className='createPage'>
+            <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
                     <div>
-                        <input placeholder='Fråga'
+                        <input className='create_input' placeholder='Fråga'
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
                         />
-                        <input placeholder='Svar'
+                        <input className='create_input' placeholder='Svar'
                         value={answer}
                         onChange={(e) => setAnswer(e.target.value)}
                         />

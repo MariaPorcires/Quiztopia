@@ -73,18 +73,16 @@ function LoginPage() {
 
     return(
         <div className='loginPage'>
-            <header className='loginPage_header'>
-                
-            </header>
+            
             <section className='loginPage_frame'>
             
                
 
                 <section className='loginPage_input'>
-                    <input type="text" placeholder='Användarnamn' value={username}
+                    <input className='inputs' type="text" placeholder='Användarnamn' value={username}
                     onChange={event =>  setUsername(event.target.value)} />
                     
-                    <input type="text" placeholder='Lösenord' value={password}
+                    <input className='inputs' type="text" placeholder='Lösenord' value={password}
                     onChange={event => setPassword(event.target.value)} />
                     </section>
                 
