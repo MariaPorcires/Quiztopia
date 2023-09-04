@@ -47,8 +47,49 @@ function CreateQuiz() {
             })
     }, [lat, lng, zoom])
 
+    interface ApiQuestionResponse {
+        success: boolean;
+        error: string;
+    }
+
+    async function handleAddQuestion() {
+    
+        const quizId = localStorage.getItem('quizId')
+        console.log(quizId);
+        
+        
+        const url ='https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/question'
+        const token: string = localStorage.getItem('token') || ""
+        console.log('JWTtoken: ', token)
+
+      
+
+        const settings = {
+            method: 'POST',
+            body: JSON.stringify({
+                name: quizId,
+                question: question,
+                answer: answer,
+                location: {
+                    longitude: lng,
+                    latitude: lat,
+                }
+            }),
+
+            headers: { 'Content-Type': 'application/json',
+             Authorization: `Bearer ${token}`},
+        }
+
+        const response = await fetch(url, settings)
+        const data: ApiQuestionResponse = await response.json()
+        console.log(data);
+       
+    
+    }
+
     return(
         <section className='createPage'>
+            <section className='page'>
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -62,12 +103,15 @@ function CreateQuiz() {
                         onChange={(e) => setAnswer(e.target.value)}
                         />
 
-                        <button >Lägg till fråga</button>
+                        <button onClick={handleAddQuestion}>Lägg till fråga</button>
                     </div>
                 )} 
                   <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
                   <p>Du är här! {position?.latitude} {position?.longitude}</p>
                   <p> Center position: {lat} lat, {lng} lng </p>
+                 
+                </section>
+                 
                   <div ref={mapContainer} className="map-container" />
         </section>
     )

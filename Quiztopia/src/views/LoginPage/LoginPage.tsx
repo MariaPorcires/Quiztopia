@@ -76,9 +76,9 @@ function LoginPage() {
             
             <section className='loginPage_frame'>
             
-               
-
+        
                 <section className='loginPage_input'>
+                
                     <input className='inputs' type="text" placeholder='Användarnamn' value={username}
                     onChange={event =>  setUsername(event.target.value)} />
                     
@@ -89,8 +89,9 @@ function LoginPage() {
                 <section className='loginPage_buttons'>
                     <button onClick={ handleCreateUser }>Sign up</button>
                     <button onClick={ handleLogIn }>Login</button>
-                    <p> {message} </p>
+                    
                 </section>
+                <p> {message} </p>
             </section>
 
         </div>

@@ -1,19 +1,17 @@
-.createPage {
+
+.page {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    
+    flex-direction: row;
 }
+
 
 .create_input {
     
-    width: 100%;
+    width: 13rem;
     border: solid 1px #bbb7b7;
     border-radius: 5px;
     margin-bottom: 15px;
-    padding: 4%;
+    padding: 0.5rem;
     font-size: 0.8em;
     text-transform: uppercase;
     font-family: sans-serif;
@@ -24,15 +22,13 @@
 }
 
 .map-container {
-    height: 400px;
-    width: 100%;
-    border: none;
-    position: absolute;
+    height: 500px;
+    
    
 }
 
 .mapboxgl-canvas {
     border-radius: 4em;
-    border: 1px solid black;
+    
     
 }

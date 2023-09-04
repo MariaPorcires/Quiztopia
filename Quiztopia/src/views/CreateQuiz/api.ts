@@ -25,6 +25,17 @@ async function handleCreatequiz(setShowInput: Dispatch<React.SetStateAction<bool
     const data: ApiQuizResponse = await response.json()
     console.log(data);
     setShowInput(true);
+
+    let quizId = data.quizId
+
+    if(data.quizId === undefined) {
+        console.log('quizId är undefined');
+    }
+    localStorage.setItem('quizId',(quizId)) 
+    if(data.success === false){
+        console.log('logga in igen')
+    }
+
 }
 
 export { handleCreatequiz }
