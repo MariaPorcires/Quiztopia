@@ -1,9 +1,6 @@
 import { Dispatch } from "react";
+import { ApiQuizResponse } from "../../interfaces";
 
-interface ApiQuizResponse {
-    success: boolean;
-    quizId: string;
-}
 
 async function handleCreatequiz(setShowInput: Dispatch<React.SetStateAction<boolean>>, quizname: string): Promise<void> {
     const url ='https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'

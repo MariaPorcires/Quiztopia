@@ -1,7 +1,8 @@
 import './CreateQuiz.css'
 import { useState, useRef, useEffect } from "react"
 import {handleCreatequiz} from './api'
-import { Position } from '../../interfaces';
+import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse } from '../../interfaces';
+
 import { getPosition } from '../../geolocation';
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -47,10 +48,6 @@ function CreateQuiz() {
             })
     }, [lat, lng, zoom])
 
-    interface ApiQuestionResponse {
-        success: boolean;
-        error: string;
-    }
 
     async function handleAddQuestion() {
     
@@ -62,7 +59,6 @@ function CreateQuiz() {
         const token: string = localStorage.getItem('token') || ""
         console.log('JWTtoken: ', token)
 
-      
         const settings = {
             method: 'POST',
             body: JSON.stringify({
@@ -82,13 +78,29 @@ function CreateQuiz() {
         const response = await fetch(url, settings)
         const data: ApiQuestionResponse = await response.json()
         console.log(data);
-       
+
+        }
+
+        async function handleGetQuizez() {
+            const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
+            const settings = {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            }
+            const response = await fetch(url, settings)
+            const data: ApiQuizResponse = await response.json()
+            console.log(data);
+            
+            
+        }
+      
+
     
-    }
 
     return(
         <section className='createPage'>
             <section className='page'>
+            <button onClick={handleGetQuizez}>Hämta quiz</button>
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -104,10 +116,8 @@ function CreateQuiz() {
 
                         <button onClick={handleAddQuestion}>Lägg till fråga</button>
                     </div>
+                    
                 )} 
-                  <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
-                  <p>Du är här! {position?.latitude} {position?.longitude}</p>
-                  <p> Center position: {lat} lat, {lng} lng </p>
                  
                 </section>
                  
