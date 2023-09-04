@@ -63,7 +63,6 @@ function CreateQuiz() {
         console.log('JWTtoken: ', token)
 
       
-
         const settings = {
             method: 'POST',
             body: JSON.stringify({
