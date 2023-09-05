@@ -80,38 +80,36 @@ function CreateQuiz() {
         console.log(data);
 
         }
-console.log(quizzes);
 
-        async function handleGetQuizzes() {
+
+         async function handleGetQuizzes() {
             const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
             const settings = {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
             }
             const response = await fetch(url, settings)
-            const data: ApiQuizzesResponse  = await response.json()
+            const data: ApiResponseGetQuiz = await response.json()
+            console.log('data',data)
             
-        
             if(data.quizzes){
                 setQuizzes(data.quizzes)
             }
-         
         };
+        const QuizElem = quizzes.map((quiz, index) => {
+            return <article key={index}>{quiz.quizId}</article>
+        }) 
         
-        const QuizElement = quizzes.map((quiz, index) => {
-            return <li key={index}>{quiz.quizId}</li> 
-        })
-    
+        
      
-     
+
     
 
     return(
         <section className='createPage'>
             <section className='page'>
             <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
-          {QuizElement}
-          
+         {QuizElem}
             <input/>
             <button>Sök</button>
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   

@@ -14,11 +14,11 @@ export interface ApiQuestionResponse {
 }
 
 export interface ApiResponseGetQuiz {
-	quizzes:ApiQuizResponseQuestions[];
+	quizzes:ApiQuizzesResponse[];
 	success: boolean;
 }
 
-export interface ApiQuizzesResponse {
+ export interface ApiQuizzesResponse {
 	questions: ApiQuizResponseQuestions[];
 	quizId: string;
 	userId: string;
@@ -33,4 +33,4 @@ export interface ApiQuizResponseQuestions {
 	}
 	question: string;
 
-}
+} 
