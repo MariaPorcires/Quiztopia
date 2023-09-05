@@ -81,7 +81,7 @@ function CreateQuiz() {
 
         }
 
-        async function handleGetQuizez() {
+        async function handleGetQuizzes() {
             const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
             const settings = {
                 method: 'GET',
@@ -90,8 +90,7 @@ function CreateQuiz() {
             const response = await fetch(url, settings)
             const data: ApiQuizResponse = await response.json()
             console.log(data);
-            
-            
+        
         }
       
 
@@ -100,7 +99,9 @@ function CreateQuiz() {
     return(
         <section className='createPage'>
             <section className='page'>
-            <button onClick={handleGetQuizez}>Hämta quiz</button>
+            <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
+            <input/>
+            <button>Sök</button>
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -118,7 +119,9 @@ function CreateQuiz() {
                     </div>
                     
                 )} 
-                 
+                  <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
+                  <p>Du är här! {position?.latitude} {position?.longitude}</p>
+                 <p> Center position: {lat} lat, {lng} lng </p>
                 </section>
                  
                   <div ref={mapContainer} className="map-container" />
