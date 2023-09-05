@@ -23,7 +23,7 @@ function CreateQuiz() {
     const [lat, setLat] = useState<number>(57.7)
     const [lng, setLng] = useState<number>(11.89)
     const [zoom, setZoom] = useState<number>(10)
-    const [quizzes, setQuizzes] = useState<ApiResponseGetQuiz>()
+    const [quizzes, setQuizzes] = useState<ApiQuizzesResponse[]>([])
 
     useEffect(() => {
         if( mapRef.current || !mapContainer.current ) return
@@ -80,6 +80,7 @@ function CreateQuiz() {
         console.log(data);
 
         }
+console.log(quizzes);
 
         async function handleGetQuizzes() {
             const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
@@ -88,25 +89,28 @@ function CreateQuiz() {
                 headers: {'Content-Type': 'application/json'}
             }
             const response = await fetch(url, settings)
-            const data: ApiResponseGetQuiz = await response.json()
-            console.log(data.quizzes);
+            const data: ApiQuizzesResponse  = await response.json()
+            
         
-        }
-
-        useEffect(() => {
-            handleGetQuizzes();
-
-        }, []);
-       
-        const QuizElement = 
-       
+            if(data.quizzes){
+                setQuizzes(data.quizzes)
+            }
+         
+        };
+        
+        const QuizElement = quizzes.map((quiz, index) => {
+            return <li key={index}>{quiz.quizId}</li> 
+        })
     
+     
+     
     
 
     return(
         <section className='createPage'>
             <section className='page'>
             <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
+          {QuizElement}
           
             <input/>
             <button>Sök</button>

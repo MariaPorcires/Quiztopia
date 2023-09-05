@@ -26,7 +26,7 @@ async function handleCreatequiz(setShowInput: Dispatch<React.SetStateAction<bool
     let quizId = data.quizId
 
     if(data.quizId === undefined) {
-        console.log('quizId är undefined');
+        console.log('undefined');
     }
     localStorage.setItem('quizId',(quizId)) 
     if(data.success === false){

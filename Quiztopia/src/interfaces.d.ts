@@ -14,7 +14,7 @@ export interface ApiQuestionResponse {
 }
 
 export interface ApiResponseGetQuiz {
-	quizzes: ApiQuizzesResponse[];
+	quizzes:ApiQuizResponseQuestions[];
 	success: boolean;
 }
 
@@ -23,7 +23,7 @@ export interface ApiQuizzesResponse {
 	quizId: string;
 	userId: string;
 	username: string;
-}
+} 
 
 export interface ApiQuizResponseQuestions {
 	answer: string;
