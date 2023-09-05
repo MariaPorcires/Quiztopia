@@ -1,7 +1,7 @@
 import './CreateQuiz.css'
 import { useState, useRef, useEffect } from "react"
 import {handleCreatequiz} from './api'
-import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse } from '../../interfaces';
+import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse, ApiQuizzesResponse, ApiQuizResponseQuestions } from '../../interfaces';
 
 import { getPosition } from '../../geolocation';
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
@@ -18,12 +18,12 @@ function CreateQuiz() {
     const [question, setQuestion] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
     const [position, setPosition] = useState<Position | null>(null)
-    
     const mapContainer = useRef(null)
     const mapRef = useRef<MapGl | null>(null)
     const [lat, setLat] = useState<number>(57.7)
     const [lng, setLng] = useState<number>(11.89)
     const [zoom, setZoom] = useState<number>(10)
+    const [quizzes, setQuizzes] = useState<ApiResponseGetQuiz>()
 
     useEffect(() => {
         if( mapRef.current || !mapContainer.current ) return
@@ -88,18 +88,26 @@ function CreateQuiz() {
                 headers: {'Content-Type': 'application/json'}
             }
             const response = await fetch(url, settings)
-            const data: ApiQuizResponse = await response.json()
-            console.log(data);
+            const data: ApiResponseGetQuiz = await response.json()
+            console.log(data.quizzes);
         
         }
-      
 
+        useEffect(() => {
+            handleGetQuizzes();
+
+        }, []);
+       
+        const QuizElement = 
+       
+    
     
 
     return(
         <section className='createPage'>
             <section className='page'>
             <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
+          
             <input/>
             <button>Sök</button>
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
