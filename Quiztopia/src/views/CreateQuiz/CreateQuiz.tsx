@@ -99,10 +99,6 @@ function CreateQuiz() {
         const QuizElem = quizzes.map((quiz, index) => {
             return <article key={index}>{quiz.quizId}</article>
         }) 
-        
-        
-     
-
     
 
     return(
