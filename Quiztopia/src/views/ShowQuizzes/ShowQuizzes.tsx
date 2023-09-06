@@ -32,3 +32,4 @@ function ShowQuizzes() {
     )
 }
 
+export default ShowQuizzes

@@ -1,9 +1,10 @@
 import './App.css'
 import LoginPage from './views/LoginPage/LoginPage'
 import CreateQuiz from './views/CreateQuiz/CreateQuiz'
-import ShowOptions from './views/Navigation/Navigation'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Navigation from './views/Navigation/Navigation'
+import SearchQuiz from './views/SearchQuiz/SearchQuiz'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ShowQuizzes from './views/ShowQuizzes/ShowQuizzes'
 
 const router = createBrowserRouter([
   {
@@ -17,12 +18,19 @@ const router = createBrowserRouter([
   {
     path: "/createquiz",
     element: <CreateQuiz />
+  },
+  {
+    path: "/showquizzes",
+    element: <ShowQuizzes />
+  },
+  {
+    path: "/searchquiz",
+    element: <SearchQuiz />
   }
 ])
 
 function App() {
   
-
   return (
     <div className='App'>
       <RouterProvider router={router}/>

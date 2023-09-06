@@ -77,7 +77,11 @@ function CreateQuiz() {
 
         const response = await fetch(url, settings)
         const data: ApiQuestionResponse = await response.json()
-        console.log(data);
+        console.log('userid data', data.quiz.Attributes.userId);
+        
+
+        localStorage.setItem('userId',(data.quiz.Attributes.userId)) 
+
 
         }
 
