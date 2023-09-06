@@ -1,7 +1,7 @@
 import './CreateQuiz.css'
 import { useState, useRef, useEffect } from "react"
-import {handleCreatequiz} from './api'
-import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse, ApiQuizzesResponse, ApiQuizResponseQuestions } from '../../interfaces';
+import { handleCreatequiz } from './api'
+import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse, ApiQuizzesResponse, ApiQuizResponseQuestions, QuestionsResponse } from '../../interfaces';
 
 import { getPosition } from '../../geolocation';
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
@@ -26,6 +26,9 @@ function CreateQuiz() {
     const [quizzes, setQuizzes] = useState<ApiQuizzesResponse[]>([])
 
     useEffect(() => {
+
+        //getPosition()
+        
         if( mapRef.current || !mapContainer.current ) return
 
             mapRef.current = new MapGl({
@@ -48,7 +51,7 @@ function CreateQuiz() {
             })
     }, [lat, lng, zoom])
 
-
+   
     async function handleAddQuestion() {
     
         const quizId = localStorage.getItem('quizId')
@@ -76,17 +79,16 @@ function CreateQuiz() {
         }
 
         const response = await fetch(url, settings)
-        const data: ApiQuestionResponse = await response.json()
-        console.log('userid data', data.quiz.Attributes.userId);
+        const data: QuestionsResponse = await response.json()
+        console.log(data);
         
-
+        console.log('userid data', data.quiz.Attributes.userId);
         localStorage.setItem('userId',(data.quiz.Attributes.userId)) 
-
 
         }
 
 
-         async function handleGetQuizzes() {
+         async function handleGetQuizzes(setQuizzes) {
             const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
             const settings = {
                 method: 'GET',
@@ -99,19 +101,18 @@ function CreateQuiz() {
             if(data.quizzes){
                 setQuizzes(data.quizzes)
             }
-        };
+        };/* 
         const QuizElem = quizzes.map((quiz, index) => {
             return <article key={index}>{quiz.quizId}</article>
         }) 
-    
+     */
 
     return(
         <section className='createPage'>
             <section className='page'>
             <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
-         {QuizElem}
-            <input/>
-            <button>Sök</button>
+                
+            
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -129,8 +130,7 @@ function CreateQuiz() {
                     </div>
                     
                 )} 
-                  <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
-                  <p>Du är här! {position?.latitude} {position?.longitude}</p>
+                 
                  <p> Center position: {lat} lat, {lng} lng </p>
                 </section>
                  
@@ -140,4 +140,7 @@ function CreateQuiz() {
 
 }
 
+{/* <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
+<p>Du är här! {position?.latitude} {position?.longitude}</p>
+ */}
 export default CreateQuiz

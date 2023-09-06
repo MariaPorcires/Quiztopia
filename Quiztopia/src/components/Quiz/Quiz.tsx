@@ -1,5 +1,7 @@
 function Quiz() {
     return(
-       < ViewComponent data={data} />
+       <></>
     )
 }
+
+export default Quiz
