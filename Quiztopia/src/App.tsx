@@ -1,8 +1,9 @@
 import './App.css'
 import LoginPage from './views/LoginPage/LoginPage'
 import CreateQuiz from './views/CreateQuiz/CreateQuiz'
-import ShowOptions from './views/ShowOptions/ShowOptions'
+import ShowOptions from './views/Navigation/Navigation'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Navigation from './views/Navigation/Navigation'
 
 const router = createBrowserRouter([
   {
@@ -10,8 +11,8 @@ const router = createBrowserRouter([
     element: <LoginPage />
   },
   {
-    path: "/showoptions",
-    element: <ShowOptions />
+    path: "/navigation",
+    element: <Navigation />
   },
   {
     path: "/createquiz",

@@ -64,7 +64,7 @@ function LoginPage() {
         localStorage.setItem("token", data.token || '')//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF3cHh2VEx0WW0wY1YyQlVaLXFWYSIsInVzZXJuYW1lIjoidHQiLCJpYXQiOjE2OTM0NjUzNjQsImV4cCI6MTY5MzQ2ODk2NH0.vhL3B59ixExGVJ18eQkJBHqXj0lqPAdKHzUwOuNuoT8" )
  
         if( data.success ) {
-			navigate('/showoptions')
+			navigate('/navigation')
 			//if( data.token ) setToken(data.token)
 		} else {
 			setMessage('Kunde inte logga in.')
