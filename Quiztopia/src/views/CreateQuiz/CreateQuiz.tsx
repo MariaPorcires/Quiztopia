@@ -2,11 +2,9 @@ import './CreateQuiz.css'
 import { useState, useRef, useEffect } from "react"
 import { handleCreatequiz } from './api'
 import { Position, ApiQuestionResponse, ApiResponseGetQuiz, ApiQuizResponse, ApiQuizzesResponse, ApiQuizResponseQuestions, QuestionsResponse } from '../../interfaces';
-
 import { getPosition } from '../../geolocation';
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWFwb3JjaXJlcyIsImEiOiJjbGxwNjUwMnIwM2tqM3BwOG5idWxhd2lpIn0.lzqiA47Mt1DcZZw3cSfhRQ'
 console.log(mapboxgl.accessToken);
