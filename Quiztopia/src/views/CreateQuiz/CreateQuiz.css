@@ -24,11 +24,9 @@
 .map-container {
     height: 500px;
     
-   
 }
 
 .mapboxgl-canvas {
     border-radius: 4em;
-    
     
 }

@@ -8,8 +8,8 @@ function Navigation() {
 
         <section className='navigation'>
             <section className='img'>
-            <img className='img' src='\src\assets\pin7.jpg' />
-            
+                <img className='img' src='\src\assets\pin7.jpg' />
+
             </section>
             <Link className='nav__links' to={'/createquiz'}>Skapa ett quiz</Link>
             <Link className='nav__links' to={'/showquizzes'}>Hämta quiz</Link>

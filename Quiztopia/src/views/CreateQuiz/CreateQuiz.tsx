@@ -23,7 +23,7 @@ function CreateQuiz() {
     const [lat, setLat] = useState<number>(57.7)
     const [lng, setLng] = useState<number>(11.89)
     const [zoom, setZoom] = useState<number>(10)
-    const [quizzes, setQuizzes] = useState<ApiQuizzesResponse[]>([])
+    
 
     useEffect(() => {
 
@@ -53,10 +53,14 @@ function CreateQuiz() {
 
    
     async function handleAddQuestion() {
+
+        /* const longitude = lon.toString()
+        const latitude = lat.toString()
+        console.log(lat, lon) */
+    
     
         const quizId = localStorage.getItem('quizId')
         console.log(quizId);
-        
         
         const url ='https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz/question'
         const token: string = localStorage.getItem('token') || ""
@@ -82,37 +86,22 @@ function CreateQuiz() {
         const data: QuestionsResponse = await response.json()
         console.log(data);
         
-        console.log('userid data', data.quiz.Attributes.userId);
+       /*  console.log('userid data', data.quiz.Attributes.userId);
         localStorage.setItem('userId',(data.quiz.Attributes.userId)) 
-
+ */
         }
 
 
-         async function handleGetQuizzes(setQuizzes) {
-            const url = 'https://fk7zu3f4gj.execute-api.eu-north-1.amazonaws.com/quiz'
-            const settings = {
-                method: 'GET',
-                headers: {'Content-Type': 'application/json'}
-            }
-            const response = await fetch(url, settings)
-            const data: ApiResponseGetQuiz = await response.json()
-            console.log('data',data)
-            
-            if(data.quizzes){
-                setQuizzes(data.quizzes)
-            }
-        };/* 
-        const QuizElem = quizzes.map((quiz, index) => {
-            return <article key={index}>{quiz.quizId}</article>
-        }) 
-     */
+      
+    
 
     return(
         <section className='createPage'>
-            <section className='page'>
-            <button onClick={handleGetQuizzes}>Hämta alla quiz</button>
-                
+            <section>
+               
             
+            
+
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -129,7 +118,8 @@ function CreateQuiz() {
                         <button onClick={handleAddQuestion}>Lägg till fråga</button>
                     </div>
                     
-                )} 
+                )} <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
+                <p>Du är här! {position?.latitude} {position?.longitude}</p>
                  
                  <p> Center position: {lat} lat, {lng} lng </p>
                 </section>
@@ -140,7 +130,4 @@ function CreateQuiz() {
 
 }
 
-{/* <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
-<p>Du är här! {position?.latitude} {position?.longitude}</p>
- */}
 export default CreateQuiz
