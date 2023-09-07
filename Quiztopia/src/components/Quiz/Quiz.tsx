@@ -7,8 +7,11 @@ interface QuizProps {
 function Quiz(props: QuizProps) {
     const quiz = props.quiz
     return(
-        <div>
-            {quiz.quizId}
+        <div className="quiz">
+            <h2>Quiz: {quiz.quizId}</h2>
+            <p>Av: {quiz.username}</p>
+            <button>Välj quiz</button>
+
         </div>
     )
 }

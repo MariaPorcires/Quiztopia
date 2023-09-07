@@ -28,7 +28,7 @@ function CreateQuiz() {
     useEffect(() => {
 
         //getPosition()
-        
+     
         if( mapRef.current || !mapContainer.current ) return
 
             mapRef.current = new MapGl({
@@ -37,8 +37,9 @@ function CreateQuiz() {
                 center: [lng, lat],
                 zoom: zoom
             });
-            const map: MapGl = mapRef.current
 
+            const map: MapGl = mapRef.current
+           
             map.on('move', () => {
                 interface Position {
                     lng: number;
@@ -48,8 +49,21 @@ function CreateQuiz() {
                 setLat(Number(position.lat.toFixed(4)))
                 setLng(Number(position.lng.toFixed(4)))
                 setZoom(map.getZoom());
-            })
+
+                map.on('click',(e)=>{
+                    console.log(e)
+
+                    const marker = new mapboxgl.Marker({color:'#EEEEEE'})
+                    marker.setLngLat([e.LngLat, e.LngLat])
+                    .addTo(map);
+                    
+                    })
+                })
+        
     }, [lat, lng, zoom])
+
+
+   
 
    
     async function handleAddQuestion() {
