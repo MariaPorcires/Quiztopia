@@ -1,4 +1,14 @@
 .showQuizzes {
     display: flex;
     flex-direction: column;
+    width: 400px;
+}
+
+.showAll {
+    
+}
+
+.map-container {
+    height: 500px;
+    
 }

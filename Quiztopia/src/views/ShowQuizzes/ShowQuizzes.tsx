@@ -63,10 +63,10 @@ function ShowQuizzes() {
 
     return(
         <section className='showQuizzes'>
-            
-        <button onClick={handleGetQuizzes} >Hämta alla quiz</button>
-        {QuizElem}
-
+            <section className='showAll'>
+                <button onClick={handleGetQuizzes} >Hämta alla quiz</button>
+                {QuizElem}
+            </section>
             <div ref={mapContainer} className="map-container" />
         
         </section>
