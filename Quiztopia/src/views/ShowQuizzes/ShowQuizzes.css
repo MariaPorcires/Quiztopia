@@ -1,0 +1,4 @@
+.showQuizzes {
+    display: flex;
+    flex-direction: column;
+}
