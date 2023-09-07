@@ -56,11 +56,10 @@ function ShowQuizzes() {
     };
    
     const QuizElem = quizzes.map((quiz, index) => {
-        return <Quiz quiz = {quiz} key={index}/>
+        return <Quiz quiz={quiz} key={index} map={mapRef.current}/>
     }) 
 
  
-
     return(
         <section className='showQuizzes'>
             <section className='showAll'>
