@@ -136,7 +136,7 @@ function CreateQuiz() {
             <div>
                 {
                     addedQuestions.map(q => (
-                        <div key={q.question}>{q.question}</div>
+                        <div key={q.question}>{q.question} {q.answer} {q.location.latitude} {q.location.longitude}</div>
                     ))
                 }
             </div>
