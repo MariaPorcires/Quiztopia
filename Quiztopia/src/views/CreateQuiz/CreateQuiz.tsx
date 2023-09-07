@@ -27,7 +27,7 @@ function CreateQuiz() {
 
     useEffect(() => {
 
-        //getPosition()
+    //getPosition()
      
         if( mapRef.current || !mapContainer.current ) return
 
@@ -50,29 +50,21 @@ function CreateQuiz() {
                 setLng(Number(position.lng.toFixed(4)))
                 setZoom(map.getZoom());
 
-                map.on('click',(e)=>{
-                    console.log(e)
-
-                    const marker = new mapboxgl.Marker({color:'#EEEEEE'})
-                    marker.setLngLat([e.LngLat, e.LngLat])
+                
+            })
+            map.on('click',(e)=>{
+                console.log('Click on map', e)
+                const marker = new mapboxgl.Marker()
+                    .setLngLat([e.lngLat.lng, e.lngLat.lat])
                     .addTo(map);
-                    
-                    })
-                })
+                // Du kanske behöver lägga till markers i en state-variabel senare (för att kunna ta bort markers)
+            })
         
     }, [lat, lng, zoom])
 
 
-   
-
-   
     async function handleAddQuestion() {
 
-        /* const longitude = lon.toString()
-        const latitude = lat.toString()
-        console.log(lat, lon) */
-    
-    
         const quizId = localStorage.getItem('quizId')
         console.log(quizId);
         
@@ -99,23 +91,13 @@ function CreateQuiz() {
         const response = await fetch(url, settings)
         const data: QuestionsResponse = await response.json()
         console.log(data);
-        
-       /*  console.log('userid data', data.quiz.Attributes.userId);
-        localStorage.setItem('userId',(data.quiz.Attributes.userId)) 
- */
         }
 
-
-      
-    
 
     return(
         <section className='createPage'>
             <section>
                
-            
-            
-
             <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
                 <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
                 { showInput && (
@@ -132,7 +114,7 @@ function CreateQuiz() {
                         <button onClick={handleAddQuestion}>Lägg till fråga</button>
                     </div>
                     
-                )} <button onClick={() => getPosition(setPosition)}> Var är jag? </button>
+                )} <button onClick={() => getPosition(mapRef.current, setPosition)}> Var är jag? </button>
                 <p>Du är här! {position?.latitude} {position?.longitude}</p>
                  
                  <p> Center position: {lat} lat, {lng} lng </p>
