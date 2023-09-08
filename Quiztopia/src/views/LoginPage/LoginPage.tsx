@@ -9,8 +9,6 @@ function LoginPage() {
     const [password, setPassword] = useState<string>('')
     const [message, setMessage] = useState<string>('')
 
-    //const [token, setToken] = useState<string>('') 
-
     interface ApiResponse {
         success: boolean;
         message?: string;
@@ -61,11 +59,10 @@ function LoginPage() {
         const response = await fetch(url, settings)
         const data: ApiSignUp = await response.json()
         console.log('nästa data: ', data);
-        localStorage.setItem("token", data.token || '')//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF3cHh2VEx0WW0wY1YyQlVaLXFWYSIsInVzZXJuYW1lIjoidHQiLCJpYXQiOjE2OTM0NjUzNjQsImV4cCI6MTY5MzQ2ODk2NH0.vhL3B59ixExGVJ18eQkJBHqXj0lqPAdKHzUwOuNuoT8" )
+        localStorage.setItem("token", data.token || '')
  
         if( data.success ) {
 			navigate('/navigation')
-			//if( data.token ) setToken(data.token)
 		} else {
 			setMessage('Kunde inte logga in.')
 		}
@@ -76,7 +73,6 @@ function LoginPage() {
             
             <section className='loginPage_frame'>
             
-        
                 <section className='loginPage_input'>
                 
                     <input className='inputs' type="text" placeholder='Användarnamn' value={username}
