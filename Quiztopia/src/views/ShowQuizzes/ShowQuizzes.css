@@ -1,7 +1,7 @@
 .showQuizzes {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 600px;
 }
 
 .showAll {

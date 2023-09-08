@@ -10,7 +10,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWFwb3JjaXJlcyIsImEiOiJjbGxwNjUwMnIwM2tqM
 console.log(mapboxgl.accessToken);
 
 
-
 function CreateQuiz() {
     const [showInput, setShowInput] = useState<boolean>(false)
     const [quizName, setQuizName] = useState<string>('')
@@ -27,9 +26,7 @@ function CreateQuiz() {
     const [addedQuestions, setAddedQuestions] = useState<ApiQuizResponseQuestions[]>([])
     
     
-    
     useEffect(() => {
-        
         
         if( mapRef.current || !mapContainer.current ) return
         
@@ -51,15 +48,15 @@ function CreateQuiz() {
             setLat(Number(position.lat.toFixed(4)))
             setLng(Number(position.lng.toFixed(4)))
             setZoom(map.getZoom());
-            
-            
+        
         })
+
         map.on('click',(e)=>{
             console.log('Click on map', e)
             const marker = new mapboxgl.Marker()
             .setLngLat([e.lngLat.lng, e.lngLat.lat])
             .addTo(map);
-            // Du kanske behöver lägga till markers i en state-variabel senare (för att kunna ta bort markers)
+            
             const lngLat = marker.getLngLat()
             setLngQuestion(e.lngLat.lng)
             setLatQuestion( e.lngLat.lat)
@@ -115,38 +112,41 @@ function CreateQuiz() {
     
     return(
         <section className='createPage'>
-        <section>
-        
-        <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} />   
-        <button onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
-        { showInput && (
-            <div>
-            <input className='create_input' placeholder='Fråga'
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            />
-            <input className='create_input' placeholder='Svar'
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            />
-            
-            <button onClick={handleAddQuestion}>Lägg till fråga</button>
-            <div>
-                {
-                    addedQuestions.map(q => (
-                        <div key={q.question}>{q.question} {q.answer} {q.location.latitude} {q.location.longitude}</div>
-                    ))
-                }
-            </div>
-            </div>
-            
-            )} <button onClick={() => getPosition(mapRef.current, setPosition)}> Var är jag? </button>
-            
-            
-            
+            <section className='createPage__main'>
+                <section className='createPage__container'>
+                <button className='create__button' onClick={() => getPosition(mapRef.current, setPosition)}> Var är jag? </button>
+            <h2 className='create__title'>Skapa quiz:</h2>
+            <input className='create_input' type='text' placeholder='Namn på quiz' value={quizName} onChange={event => setQuizName(event.target.value)} /> 
+
+            <button className='create__button' onClick={() => handleCreatequiz(setShowInput, quizName )}>Skapa quiz</button>
+            { showInput && (
+                <div>
+                <input className='create_input' placeholder='Fråga'
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                />
+                <input className='create_input' placeholder='Svar'
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                />
+                
+                <button className='create__button' onClick={handleAddQuestion}>Lägg till fråga</button>
+                <div>
+                    {
+                        addedQuestions.map(q => (
+                            <div key={q.question}>{q.question} {q.answer} {q.location.latitude} {q.location.longitude}</div>
+                        ))
+                    }
+                </div>
+                </div>
+                
+                )} 
             </section>
             
-            <div ref={mapContainer} className="map-container" />
+            <section className='createPage__map'>
+                <div ref={mapContainer} className="map-container" />
+                </section>
+                </section>
             </section>
             )
             

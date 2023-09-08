@@ -1,5 +1,6 @@
 import { ApiQuizzesResponse } from "../../interfaces"
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
+import './Quiz.css'
 
 interface QuizProps {
     quiz: ApiQuizzesResponse;
@@ -49,10 +50,11 @@ function Quiz(props: QuizProps) {
     }
     return(
         <div className="quiz">
+            <div className="quizContainer">
             <h2>Quiz: {quiz.quizId}</h2>
             <p>Av: {quiz.username}</p>
             <button onClick={handleChosenQuiz}>Välj quiz</button>
-
+            </div>
         </div>
     )
 }

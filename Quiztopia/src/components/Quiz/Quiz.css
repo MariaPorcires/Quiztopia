@@ -1,0 +1,16 @@
+.quiz {
+    background-color: #F3E4E1;
+    border: 1px solid black;
+    border-radius: 2em;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.quizContainer {
+    
+}
