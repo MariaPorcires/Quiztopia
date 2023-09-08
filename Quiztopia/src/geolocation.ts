@@ -12,8 +12,6 @@ function getPosition(map: mapboxgl.Map, setPosition: ReactSetState<Position | nu
 
         setPosition({ latitude: coords.latitude, longitude: coords.longitude })
         map.setCenter([coords.longitude, coords.latitude]);
-        console.log(coords);
-        console.log(position);
 
       }, error => {
         console.log('position error', error);

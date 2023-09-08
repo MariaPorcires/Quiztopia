@@ -5,7 +5,6 @@ import {useState, useRef, useEffect} from 'react'
 import mapboxgl, { Map as MapGl } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFyaWFwb3JjaXJlcyIsImEiOiJjbGxwNjUwMnIwM2tqM3BwOG5idWxhd2lpIn0.lzqiA47Mt1DcZZw3cSfhRQ'
-console.log(mapboxgl.accessToken); 
 
 
 function ShowQuizzes() {
@@ -24,6 +23,7 @@ function ShowQuizzes() {
         center: [lng, lat],
         zoom: zoom
     });
+
     const map: MapGl = mapRef.current
     map.on('move', () => {
         interface Position {
@@ -71,8 +71,6 @@ function ShowQuizzes() {
     )
 
 }
-
-
 
 
 
