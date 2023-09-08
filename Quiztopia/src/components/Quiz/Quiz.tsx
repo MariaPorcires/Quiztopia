@@ -45,17 +45,16 @@ function Quiz(props: QuizProps) {
              marker.setLngLat([question.location.longitude, question.location.latitude])
              marker.addTo(props.map)
              marker.setPopup(new mapboxgl.Popup().setHTML(`<h1>Fråga: ${ question.question } Svar: ${ question.answer}</h1>`))
-             
         });
     }
+
     return(
-        <div className="quiz">
-            <div className="quizContainer">
+        <section className="quizPage">
             <h2>Quiz: {quiz.quizId}</h2>
             <p>Av: {quiz.username}</p>
             <button onClick={handleChosenQuiz}>Välj quiz</button>
-            </div>
-        </div>
+        </section>
+        
     )
 }
 

@@ -52,7 +52,6 @@ function ShowQuizzes() {
         if(data.quizzes){
             setQuizzes(data.quizzes)
         }
-
     };
    
     const QuizElem = quizzes.map((quiz, index) => {
@@ -62,13 +61,13 @@ function ShowQuizzes() {
  
     return(
         <section className='showQuizzes'>
-            <section className='showAll'>
-                <button onClick={handleGetQuizzes} >Hämta alla quiz</button>
-                {QuizElem}
-            </section>
-            <div ref={mapContainer} className="map-container" />
-        
+        <section className='showAll'>
+            <button onClick={handleGetQuizzes} >Hämta alla quiz</button>
+            {QuizElem}
         </section>
+        <div ref={mapContainer} className="map-container" />
+    
+    </section>
     )
 
 }
